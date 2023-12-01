@@ -1,2 +1,3 @@
 [alias]
 solution = "run --quiet -- solution"
+solve = "run --quiet -- solve"

@@ -1,6 +1,6 @@
-use aoc_client::{AocResult, AocClient};
+use aoc_client::{AocClient, AocResult};
 
-use crate::date::{Day, Year};
+use crate::types::date::{Day, Year};
 
 pub fn get_client(year: &Year, day: &Day, input: &str) -> AocResult<AocClient> {
     AocClient::builder()

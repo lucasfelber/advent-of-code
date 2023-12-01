@@ -1,6 +1,6 @@
-use std::{fmt::Display, str::FromStr, error::Error};
+use std::{error::Error, fmt::Display, str::FromStr};
 
-use chrono::{FixedOffset, Utc, TimeZone, Datelike, DateTime};
+use chrono::{DateTime, Datelike, FixedOffset, TimeZone, Utc};
 
 const FIRST_PUZZLE_DAY: u32 = 1;
 const LAST_PUZZLE_DAY: u32 = 25;
@@ -12,8 +12,6 @@ fn get_aoc_now() -> DateTime<FixedOffset> {
     FixedOffset::east_opt(RELEASE_TIMEZONE_OFFSET)
         .unwrap()
         .from_utc_datetime(&Utc::now().naive_utc())
-
-    // "2023-12-05T12:00:00Z".parse::<DateTime<FixedOffset>>().unwrap()
 }
 
 #[derive(Debug, Clone, Copy)]
@@ -66,7 +64,13 @@ impl Error for DayFromStrError {}
 
 impl Display for DayFromStrError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.write_str(format!("expected a number between {} and {}", FIRST_PUZZLE_DAY, LAST_PUZZLE_DAY).as_str())
+        f.write_str(
+            format!(
+                "expected a number between {} and {}",
+                FIRST_PUZZLE_DAY, LAST_PUZZLE_DAY
+            )
+            .as_str(),
+        )
     }
 }
 
@@ -118,6 +122,13 @@ impl Error for YearFromStrError {}
 
 impl Display for YearFromStrError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.write_str(format!("expected a number between {} and {}", FIRST_EVENT_YEAR, get_latest_event_year()).as_str())
+        f.write_str(
+            format!(
+                "expected a number between {} and {}",
+                FIRST_EVENT_YEAR,
+                get_latest_event_year()
+            )
+            .as_str(),
+        )
     }
 }

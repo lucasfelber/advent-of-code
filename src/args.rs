@@ -1,6 +1,6 @@
 use clap::{Parser, Subcommand};
 
-use crate::date::{Day, Year};
+use crate::types::date::{Day, Year};
 
 #[derive(Parser)]
 #[command(version)]
@@ -12,9 +12,17 @@ pub struct Cli {
 #[derive(Subcommand)]
 pub enum Commands {
     Solution {
-        #[arg(long)]
+        #[arg(short, long)]
         year: Option<Year>,
-        #[arg(long)]
+        #[arg(short, long)]
         day: Option<Day>,
+    },
+    Solve {
+        #[arg(short, long)]
+        year: Option<Year>,
+        #[arg(short, long)]
+        day: Option<Day>,
+        #[arg(short, long)]
+        release: bool,
     },
 }
