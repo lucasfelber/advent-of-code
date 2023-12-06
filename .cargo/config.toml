@@ -1,3 +1,5 @@
 [alias]
+input = "run --quiet -- input"
 solution = "run --quiet -- solution"
-solve = "run --quiet -- solve"
+day = "run --quiet -- day"
+puzzle = "run --quiet -- puzzle"

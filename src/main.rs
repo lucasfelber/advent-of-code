@@ -1,16 +1,24 @@
 mod args;
-mod handler;
-mod types;
+mod commands;
+mod date;
 
 use args::{Cli, Commands};
 use clap::Parser;
-use handler::commands::{solution, solve};
+use commands::puzzle;
 
 fn main() {
     let cli = Cli::parse();
 
-    match cli.command {
-        Commands::Solution { year, day } => solution::handle(year, day),
-        Commands::Solve { year, day, release } => solve::handle(year, day, release),
+    match match cli.command {
+        Commands::Puzzle {
+            year,
+            day,
+            empty,
+            no_input,
+            no_solution,
+        } => puzzle::handle(year, day, empty, no_input, no_solution),
+    } {
+        Ok(_) => (),
+        Err(e) => eprintln!("{e}"),
     }
 }
